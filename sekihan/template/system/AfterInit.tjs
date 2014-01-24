@@ -1,0 +1,48 @@
+// AfterInit.tjs…バージョンＣ・Ｄ共通
+
+// 関数名：
+//   marker_on(lay, x, y)
+// 機能概要：
+//   指定した前景レイヤを指定したＸ、Ｙ座標に表示する
+// 引数：
+//   lay … 前景レイヤ番号（0, 1, 2…）
+//   x   … Ｘ座標（ピクセル）
+//   y   … Ｙ座標（ピクセル）
+// 戻り値：
+//   なし
+function marker_on(lay, x, y)
+{
+	kag.fore.layers[lay].setPos(x, y);
+	kag.fore.layers[lay].visible = true;
+}
+
+// 関数名：
+//   marker_off(lay)
+// 機能概要：
+//   指定した前景レイヤを非表示にする
+// 引数：
+//   lay … 前景レイヤ番号（0, 1, 2…）
+// 戻り値：
+//   なし
+function marker_off(lay)
+{
+	kag.fore.layers[lay].visible = false;
+}
+
+// 関数名：
+//   get_bookmark_data(num)
+// 機能概要：
+//   栞の日付とブックマーク名を連結した文字列を返す
+// 引数：
+//   num … 栞の番号（0, 1, 2…）
+// 戻り値：
+//   栞がある場合…"[num] YYYY/MM/DD hh:mm ブックマーク名"形式の文字列で返す
+//   栞がない場合…"[num] ----/--/-- --:-- (未設定)"という文字列を返す
+function get_bookmark_data(num)
+{
+	var date = kag.getBookMarkDate(num);
+	if (date == "")
+		return "[" + (num+1) + "] ----/--/-- --:-- " + kag.getBookMarkPageName(num);
+	else
+		return "[" + (num+1) + "] " + date + " " + kag.getBookMarkPageName(num);
+}
